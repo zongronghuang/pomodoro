@@ -1,0 +1,45 @@
+
+/* timer area */
+
+#timer {
+    border-width: 5px;
+    border-style: inset;
+    border-color: black;
+    border-radius: 30px;
+    margin: 5px;
+    width: 370px; 
+    height: 300px;
+}
+
+
+/* button area */
+.buttons {
+    border-style: inset;
+    border-color: black;
+    border-radius: 10px;
+    width: 380px;
+}
+
+#start {
+    background-color: red;
+    border-radius: 10px;
+    margin: 5px;
+    width: 100px;
+    height: 60px;
+}
+
+#quit {
+    background-color: yellow;
+    border-radius: 10px;
+    margin: 5px;
+    width: 100px;
+    height: 60px;
+}
+
+#stats {
+    background-color: green;
+    border-radius: 10px;
+    margin: 5px;
+    width: 100px;
+    height: 60px;
+}
