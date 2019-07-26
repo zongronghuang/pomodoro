@@ -1,4 +1,12 @@
 
+/* global style */
+
+* {
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+
+
 /* timer area */
 
 #timer {
@@ -8,39 +16,49 @@
     border-radius: 30px;
     margin-left: auto;
     margin-right: auto;
-    width: 370px; 
-    height: 300px;
+    width: 400px; 
+    height: 200px;
 }
 
 #time {
   font-size: 100px;
-  font-family: "Lucida Console", Courier, monospace;
   position: absolute;
-  margin: auto;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+span {
+    padding-left: 0px;
 }
 
 #today {
   font-size: 20px;
   font-family: Arial, Verdana, sans-serif;
   position: absolute;
-  margin: auto;
+  margin-left: 130px;
+  margin-top: 170px;
 }
 
 /* button area */
 .buttons {
-    border-style: groove;
+    border-style: none;
     border-color: black;
     border-radius: 10px;
     margin: 5px;
     margin-left: auto;
     margin-right: auto;
-    width:370px;
+    width: 320px;
 }
 
 #start {
-    background-color: red;
+    background-color: violet;
     border-radius: 10px;
-    margin: 5px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
     width: 100px;
     height: 60px;
 }
@@ -48,7 +66,12 @@
 #quit {
     background-color: yellow;
     border-radius: 10px;
-    margin: 5px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
     width: 100px;
     height: 60px;
 }
@@ -56,15 +79,31 @@
 #stats {
     background-color: green;
     border-radius: 10px;
-    margin: 5px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
     width: 100px;
     height: 60px;
 }
 
+
+/* statistics */
+
 #count {
+    display: none;
     border-style: groove;
     margin: 5px;
     margin-left: auto;
     margin-right: auto;
     width: 370px;
+}
+
+
+/* misc */
+
+h1 {
+    text-align: center;
 }
