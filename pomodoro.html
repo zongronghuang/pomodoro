@@ -10,25 +10,19 @@
 
 <h1>My Tomato Timer!</h1>
 
-<div id="timer">
-    <div id="time">
-      <span>20</span>
-      <span>:</span>
-      <span>20</span>
-    </div>
-    <p id="today">Today:</p>
+<div class="display">
+    <div id="time"><time id="min">20</time><span>:</span><time id="sec">20</time></div>
 </div>
 
-<div class="buttons">
+<div class="controls">
     <button id="start">START</button>
     <button id="quit">END</button>
     <button id="stats">STATS</button>
 </div>
 
-<div id="count">
-    
-    <p>Total:</p>
-    
+<div class="count">
+    <div><span>Today: </span><span id="today">10</span></div>
+    <div><span>Total: </span><span id="total">10</span></div>
 </div>
 
 <script src="main.js"></script>

@@ -6,10 +6,15 @@
 }
 
 
+/* header */
+
+h1 {
+    text-align: center;
+}
 
 /* timer area */
 
-#timer {
+.display {
     border-width: 5px;
     border-style: groove;
     border-color: black;
@@ -18,29 +23,12 @@
     margin-right: auto;
     width: 400px; 
     height: 200px;
+    font-size: 100px;
 }
 
-#time {
-  font-size: 100px;
-  position: absolute;
-  margin-left: 50px;
-  margin-top: 50px;
-}
 
-span {
-    padding-left: 0px;
-}
-
-#today {
-  font-size: 20px;
-  font-family: Arial, Verdana, sans-serif;
-  position: absolute;
-  margin-left: 130px;
-  margin-top: 170px;
-}
-
-/* button area */
-.buttons {
+/* control area */
+.controls {
     border-style: none;
     border-color: black;
     border-radius: 10px;
@@ -48,7 +36,32 @@ span {
     margin-left: auto;
     margin-right: auto;
     width: 320px;
+    font-size: 25px;
+    font-weight: bold;
 }
+
+
+/* statistics area */
+
+.count {
+    text-align: center;
+    font-weight: bold;
+    border-style: groove;
+    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 370px;
+}
+
+
+
+#time {
+    text-align: center;
+    line-height: 100px;
+    padding: 50px 0px;
+}
+
+/* buttons */
 
 #start {
     background-color: violet;
@@ -58,7 +71,6 @@ span {
     margin-bottom: 5px;
     margin-right: auto;
     margin-left: auto;
-    font-size: 25px;
     width: 100px;
     height: 60px;
 }
@@ -71,7 +83,6 @@ span {
     margin-bottom: 5px;
     margin-right: auto;
     margin-left: auto;
-    font-size: 25px;
     width: 100px;
     height: 60px;
 }
@@ -84,26 +95,12 @@ span {
     margin-bottom: 5px;
     margin-right: auto;
     margin-left: auto;
-    font-size: 25px;
     width: 100px;
     height: 60px;
 }
 
 
-/* statistics */
-
-#count {
-    display: none;
-    border-style: groove;
-    margin: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 370px;
-}
 
 
-/* misc */
 
-h1 {
-    text-align: center;
-}
+
