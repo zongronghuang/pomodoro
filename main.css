@@ -36,8 +36,6 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     width: 320px;
-    font-size: 25px;
-    font-weight: bold;
 }
 
 
@@ -63,8 +61,10 @@ h1 {
 
 /* buttons */
 
-#start {
-    background-color: violet;
+
+.buttons {
+    font-size: 25px;
+    font-weight: bold;
     border-radius: 10px;
     position: relative;
     margin-top: 5px;
@@ -73,30 +73,20 @@ h1 {
     margin-left: auto;
     width: 100px;
     height: 60px;
+}
+
+
+#start {
+    background-color: violet;
+    
 }
 
 #quit {
     background-color: yellow;
-    border-radius: 10px;
-    position: relative;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100px;
-    height: 60px;
 }
 
 #stats {
     background-color: green;
-    border-radius: 10px;
-    position: relative;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 100px;
-    height: 60px;
 }
 
 
