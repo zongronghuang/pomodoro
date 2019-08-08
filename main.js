@@ -2,39 +2,53 @@
 let startBtn = document.getElementById("start");
 let endBtn = document.getElementById("end");
 let statsBtn = document.getElementById("stats");
+const minTimer = document.getElementById("min");
+const secTimer = document.getElementById("sec");
+let min = 0;
+let sec = 5;
+let intervalID;
 
 
 //countdown
-
-function countDown () {
-    let minTimer = document.getElementById("min");
-    let secTimer = document.getElementById("sec");
-    let min = 1;
-
-    for (sec = 59; sec <= 0; sec--) {    
-        if (sec >= 10) {
+function updateTime() {   
+        if (sec > 9) {
+            minTimer.innerHTML = "0" + min;
+            if (sec === 59){
+                sec--;
+            };
             secTimer.innerHTML = sec;
-        } else if (sec <= 9 && sec >= 1) {
-            sec = "0" + sec;
-            min = "0" + (min--);
-            secTimer.innerHTML = sec;
-            minTimer.innerHTML = min;
-        } else if (sec === 0) {
+            sec--;
+        } else if (sec <= 9 && sec >= 0) {
             secTimer.innerHTML = "0" + sec;
-            if (min > 1) {
-                min--;
-                minTimer.innerHTML = "0" + min;
-            } else {
-                min--;
-                minTimer.innerHTML = "0" + min;
-                break;
-            }
-                
+            minTimer.innerHTML = "0" + min;
+            sec--;
+        } else {
+            sec = 59;
+            secTimer.innerHTML = sec;
+            min--;
+            minTimer.innerHTML = "0" + min;
         };
-    }
+        
+};
 
-    
-}
 
-setInterval(countDown, 1000);
+function startCountDown() {
+    intervalID = setInterval(updateTime, 700);
+};
+
+function pauseCountDown(){
+
+};
+
+function endCountDown(){
+    clearInterval(intervalID);
+    minTimer.innerHTML = "00";
+    secTimer.innerHTML = "00";
+    min = 0;
+    sec = 5;
+};
+
+startBtn.addEventListener("click", startCountDown);
+endBtn.addEventListener("click", endCountDown);
+
 
