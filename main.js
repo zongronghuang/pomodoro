@@ -4,51 +4,87 @@ let endBtn = document.getElementById("end");
 let statsBtn = document.getElementById("stats");
 const minTimer = document.getElementById("min");
 const secTimer = document.getElementById("sec");
-let min = 0;
-let sec = 5;
+let min = 1;
+let sec = 12;
 let intervalID;
+let timeoutID;
 
 
 //countdown
 function updateTime() {   
-        if (sec > 9) {
-            minTimer.innerHTML = "0" + min;
-            if (sec === 59){
-                sec--;
+
+    //display sec (> 9) or when sec goes down from 59
+    if (sec > 9) {
+        if (sec === 59){
+            sec--;
             };
-            secTimer.innerHTML = sec;
-            sec--;
-        } else if (sec <= 9 && sec >= 0) {
-            secTimer.innerHTML = "0" + sec;
-            minTimer.innerHTML = "0" + min;
-            sec--;
+        secTimer.innerHTML = sec;
+        sec--;
+        if(min >= 10) {
+            minTimer.innerHTML = min;
         } else {
-            sec = 59;
-            secTimer.innerHTML = sec;
-            min--;
             minTimer.innerHTML = "0" + min;
         };
-        
+
+    //display sec (between 0 and 9)
+    } else if (sec <= 9 && sec >= 0) {
+        secTimer.innerHTML = "0" + sec;
+        sec--;
+        if(min >= 10) {
+            minTimer.innerHTML = min;
+        } else {
+            minTimer.innerHTML = "0" + min;
+        };
+
+
+    //end the interval when both min and sec are 0
+    } else if(minTimer.innerHTML == "00" && secTimer.innerHTML == "00"){
+        clearInterval(intervalID);
+
+
+    //display sec when transitioning from 0 to 59
+    } else if (sec === -1) {  
+        sec = 59;
+        secTimer.innerHTML = sec;
+        min--;
+        if(min >= 10) {
+            minTimer.innerHTML = min;
+        } else {
+            minTimer.innerHTML = "0" + min;
+        };
+    };
 };
 
 
-function startCountDown() {
-    intervalID = setInterval(updateTime, 700);
+//start, pause, resume the countdown
+function startPauseResumeCountDown() {
+    if(startBtn.innerHTML == "START") {
+        min = 1;
+        sec = 12;
+        intervalID = setInterval(updateTime, 700);
+        startBtn.innerHTML = "PAUSE";
+    } else if(startBtn.innerHTML == "PAUSE"){
+        clearInterval(intervalID);
+        startBtn.innerHTML = "RESUME";
+    } else {
+        intervalID = setInterval(updateTime, 700);
+        startBtn.innerHTML = "PAUSE";
+    };  
 };
 
-function pauseCountDown(){
 
-};
-
+//end the countdown interval
+//change the button & time to the initial state
 function endCountDown(){
     clearInterval(intervalID);
-    minTimer.innerHTML = "00";
-    secTimer.innerHTML = "00";
-    min = 0;
-    sec = 5;
+    minTimer.innerHTML = "01";
+    secTimer.innerHTML = "12";
+    min = 1;
+    sec = 12;
+    startBtn.innerHTML = "START";
 };
 
-startBtn.addEventListener("click", startCountDown);
+startBtn.addEventListener("click", startPauseResumeCountDown);
 endBtn.addEventListener("click", endCountDown);
 
 
