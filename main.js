@@ -13,7 +13,7 @@ let timeoutID;
 //countdown
 function updateTime() {   
 
-    //display sec (> 9) or when sec goes down from 59
+    //display sec (> 9) or when sec goes down from 59
     if (sec > 9) {
         if (sec === 59){
             sec--;
@@ -58,19 +58,41 @@ function updateTime() {
 
 //start, pause, resume the countdown
 function startPauseResumeCountDown() {
-    if(startBtn.innerHTML == "START") {
-        min = 1;
-        sec = 12;
-        intervalID = setInterval(updateTime, 700);
-        startBtn.innerHTML = "PAUSE";
-    } else if(startBtn.innerHTML == "PAUSE"){
-        clearInterval(intervalID);
-        startBtn.innerHTML = "RESUME";
-    } else {
-        intervalID = setInterval(updateTime, 700);
-        startBtn.innerHTML = "PAUSE";
-    };  
+    
+    switch(startBtn.innerHTML) {
+        case "START":
+            min = 1;
+            sec = 12;
+            intervalID = setInterval(updateTime, 700);
+            startBtn.innerHTML = "PAUSE";
+            break;
+        case "PAUSE":
+            clearInterval(intervalID);
+            startBtn.innerHTML = "RESUME";
+            showFlash();
+            break;
+        default:
+            intervalID = setInterval(updateTime, 700);
+            startBtn.innerHTML = "PAUSE";
+            cancelFlash();
+            break;
+    };
+
 };
+
+
+//flashy text for pause
+function showFlash() {
+    minTimer.classList.add("flashy");
+    secTimer.classList.add("flashy");
+};
+
+function cancelFlash(){
+    minTimer.classList.remove("flashy");
+    secTimer.classList.remove("flashy");
+};
+
+//show completion canvas
 
 
 //end the countdown interval
