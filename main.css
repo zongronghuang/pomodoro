@@ -63,7 +63,7 @@ h1 {
 
 
 .buttons {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     border-radius: 10px;
     position: relative;
@@ -81,7 +81,8 @@ h1 {
     
 }
 
-#quit {
+
+#end {
     background-color: yellow;
 }
 
@@ -89,8 +90,17 @@ h1 {
     background-color: green;
 }
 
+.flashy {
+    color: black;
+    animation-name: flashy;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
 
-
-
+@keyframes flashy {
+    from {color: black;}
+    to  {color: white;}
+}
 
 
