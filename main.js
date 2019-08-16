@@ -4,10 +4,22 @@ let endBtn = document.getElementById("end");
 let statsBtn = document.getElementById("stats");
 const minTimer = document.getElementById("min");
 const secTimer = document.getElementById("sec");
-let min = 1;
+let total = document.getElementById("total");
+let min = 0;
 let sec = 12;
 let intervalID;
-let timeoutID;
+let today = "tomato_"+ new Date().toDateString();
+let tomatoCount = 0;
+
+
+//remember tomato number in session storage
+sessionStorage.setItem(today, tomatoCount);
+
+function updateCount() {
+    tomatoCount++;
+    total.innerHTML = tomatoCount;
+    sessionStorage[today] = tomatoCount;
+};
 
 
 //countdown
@@ -38,9 +50,10 @@ function updateTime() {
 
 
     //end the interval when both min and sec are 0
-    } else if(minTimer.innerHTML == "00" && secTimer.innerHTML == "00"){
+    } else if(minTimer.textContent == "00" && secTimer.innerHTML == "00"){
         clearInterval(intervalID);
-
+        updateCount();
+        startBtn.innerHTML = "START";
 
     //display sec when transitioning from 0 to 59
     } else if (sec === -1) {  
@@ -56,12 +69,13 @@ function updateTime() {
 };
 
 
+
 //start, pause, resume the countdown
 function startPauseResumeCountDown() {
     
     switch(startBtn.innerHTML) {
         case "START":
-            min = 1;
+            min = 0;
             sec = 12;
             intervalID = setInterval(updateTime, 700);
             startBtn.innerHTML = "PAUSE";
@@ -83,13 +97,11 @@ function startPauseResumeCountDown() {
 
 //flashy text for pause
 function showFlash() {
-    minTimer.classList.add("flashy");
-    secTimer.classList.add("flashy");
+    document.getElementById("time").classList.add("flashy");
 };
 
 function cancelFlash(){
-    minTimer.classList.remove("flashy");
-    secTimer.classList.remove("flashy");
+    document.getElementById("time").classList.remove("flashy");
 };
 
 //show completion canvas
@@ -99,11 +111,12 @@ function cancelFlash(){
 //change the button & time to the initial state
 function endCountDown(){
     clearInterval(intervalID);
-    minTimer.innerHTML = "01";
+    minTimer.innerHTML = "00";
     secTimer.innerHTML = "12";
-    min = 1;
+    min = 0;
     sec = 12;
     startBtn.innerHTML = "START";
+    cancelFlash();
 };
 
 startBtn.addEventListener("click", startPauseResumeCountDown);
