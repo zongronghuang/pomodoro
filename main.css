@@ -100,7 +100,7 @@ h1 {
 
 @keyframes flashy {
     from {color: black;}
-    to  {color: white;}
+    to  {color: #dddddd;}
 }
 
 
