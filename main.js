@@ -1,6 +1,34 @@
+let minuteDisplay = document.querySelector('#minuteDisplay')
+let secondDisplay = document.querySelector('#secondDisplay')
 
+console.log('aa', minuteDisplay)
 
+const pomodoro = {
+  status: 'on',
+  minute: 10,
+  second: 0,
+  updateTime: function (minuteDisplay, secondDisplay) {
+    console.log(this.second)
+    console.log(this.minute)
 
+    setInterval(() => {
+      console.log('inside')
+      if (this.second === 0) {
+        secondDisplay.textContent = '0' + this.second
+        this.second = 59
+      } else if (this.second >= 1 && this.second <= 9) {
+        secondDisplay.textContent = '0' + this.second
+        this.second--
+      } else {
+        secondDisplay.textContent = this.second
+        this.second--
+      }
+
+    }, 1000)
+  }
+}
+
+pomodoro.updateTime(minuteDisplay, secondDisplay)
 
 // let startBtn = document.getElementById("start");
 // let endBtn = document.getElementById("end");
