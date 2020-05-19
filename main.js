@@ -1,10 +1,10 @@
-
-
 const pomodoro = {
-  status: 'on',
-  maxSeconds: 5,
-  intervalID: '',
+  status: 'READY',
+  tomatoes: 0,
+  maxSeconds: 20,
+  intervalID: null,
   updateTime: function () {
+    // Initialize pomodoro
     const minuteDisplay = document.querySelector('#minuteDisplay')
     const secondDisplay = document.querySelector('#secondDisplay')
 
@@ -18,135 +18,48 @@ const pomodoro = {
 
       if (this.maxSeconds < 0) {
         clearInterval(this.intervalID)
+        this.status = 'READY'
       }
     }, 1000)
+  },
+  runApp: function () {
+    const playBtn = document.querySelector('#play')
+    const pauseBtn = document.querySelector('#pause')
+    const stopBtn = document.querySelector('#stop')
+    const breakBtn = document.querySelector('#break')
+
+    pauseBtn.setAttribute('hidden', '')
+    stopBtn.setAttribute('hidden', '')
+
+    playBtn.addEventListener('click', () => {
+      this.status = 'RUNNING'
+      playBtn.setAttribute('hidden', '')
+      pauseBtn.removeAttribute('hidden')
+      stopBtn.removeAttribute('hidden')
+      this.updateTime()
+    })
+
+    pauseBtn.addEventListener('click', () => {
+      this.status = 'PAUSED'
+      playBtn.removeAttribute('hidden')
+      pauseBtn.setAttribute('hidden', '')
+    })
+
+    stopBtn.addEventListener('click', () => {
+      this.status = 'READY'
+      playBtn.removeAttribute('hidden')
+      pauseBtn.setAttribute('hidden', '')
+      stopBtn.setAttribute('hidden', '')
+    })
+
+    // breakBtn.addEventListener('click', () => {
+
+    // })
 
   }
 }
 
-pomodoro.updateTime()
 
-// let startBtn = document.getElementById("start");
-// let endBtn = document.getElementById("end");
-// let statsBtn = document.getElementById("stats");
-// const minTimer = document.getElementById("min");
-// const secTimer = document.getElementById("sec");
-// let total = document.getElementById("total");
-// let min = 0;
-// let sec = 12;
-// let intervalID;
-// let today = "tomato_"+ new Date().toDateString();
-// let tomatoCount = 0;
-
-
-// //remember tomato number in session storage
-// sessionStorage.setItem(today, tomatoCount);
-
-// function updateCount() {
-//     tomatoCount++;
-//     total.innerHTML = tomatoCount;
-//     sessionStorage[today] = tomatoCount;
-// };
-
-
-// //countdown
-// function updateTime() {   
-
-//     //display sec (> 9) or when sec goes down from 59
-//     if (sec > 9) {
-//         if (sec === 59){
-//             sec--;
-//             };
-//         secTimer.innerHTML = sec;
-//         sec--;
-//         if(min >= 10) {
-//             minTimer.innerHTML = min;
-//         } else {
-//             minTimer.innerHTML = "0" + min;
-//         };
-
-//     //display sec (between 0 and 9)
-//     } else if (sec <= 9 && sec >= 0) {
-//         secTimer.innerHTML = "0" + sec;
-//         sec--;
-//         if(min >= 10) {
-//             minTimer.innerHTML = min;
-//         } else {
-//             minTimer.innerHTML = "0" + min;
-//         };
-
-
-//     //end the interval when both min and sec are 0
-//     } else if(minTimer.textContent == "00" && secTimer.innerHTML == "00"){
-//         clearInterval(intervalID);
-//         updateCount();
-//         startBtn.innerHTML = "START";
-
-//     //display sec when transitioning from 0 to 59
-//     } else if (sec === -1) {  
-//         sec = 59;
-//         secTimer.innerHTML = sec;
-//         min--;
-//         if(min >= 10) {
-//             minTimer.innerHTML = min;
-//         } else {
-//             minTimer.innerHTML = "0" + min;
-//         };
-//     };
-// };
-
-
-
-// //start, pause, resume the countdown
-// function startPauseResumeCountDown() {
-
-//     switch(startBtn.innerHTML) {
-//         case "START":
-//             min = 0;
-//             sec = 12;
-//             intervalID = setInterval(updateTime, 700);
-//             startBtn.innerHTML = "PAUSE";
-//             break;
-//         case "PAUSE":
-//             clearInterval(intervalID);
-//             startBtn.innerHTML = "RESUME";
-//             showFlash();
-//             break;
-//         default:
-//             intervalID = setInterval(updateTime, 700);
-//             startBtn.innerHTML = "PAUSE";
-//             cancelFlash();
-//             break;
-//     };
-
-// };
-
-
-// //flashy text for pause
-// function showFlash() {
-//     document.getElementById("time").classList.add("flashy");
-// };
-
-// function cancelFlash(){
-//     document.getElementById("time").classList.remove("flashy");
-// };
-
-// //show completion canvas
-
-
-// //end the countdown interval
-// //change the button & time to the initial state
-// function endCountDown(){
-//     clearInterval(intervalID);
-//     minTimer.innerHTML = "00";
-//     secTimer.innerHTML = "12";
-//     min = 0;
-//     sec = 12;
-//     startBtn.innerHTML = "START";
-//     cancelFlash();
-// };
-
-// startBtn.addEventListener("click", startPauseResumeCountDown);
-// endBtn.addEventListener("click", endCountDown);
+pomodoro.runApp()
 
 
