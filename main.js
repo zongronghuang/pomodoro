@@ -1,82 +1,114 @@
-const minuteDisplay = document.querySelector('#minuteDisplay')
-const secondDisplay = document.querySelector('#secondDisplay')
-const playBtn = document.querySelector('#play')
-const pauseBtn = document.querySelector('#pause')
-const stopBtn = document.querySelector('#stop')
-const breakBtn = document.querySelector('#break')
-
 const pomodoro = {
   status: 'READY',
-  tomatoes: 0,
+  record: 0,
   maxSeconds: 10,
-  remainingSeconds: 10,
+  remainingSeconds: 10 - 1,
   intervalID: null,
-  checkEndState: function () {
+
+  ui: {
+    minutes: document.querySelector('#minutes'),
+    seconds: document.querySelector('#seconds'),
+    playBtn: document.querySelector('#play'),
+    pauseBtn: document.querySelector('#pause'),
+    stopBtn: document.querySelector('#stop'),
+    breakBtn: document.querySelector('#break')
+  },
+
+  // initializeUI: function () {
+  //   const minutes = Math.floor(this.maxSeconds / 60)
+  //   const seconds = this.maxSeconds % 60
+
+  //   this.ui.minutes.textContent = (minutes < 10) ? ('0' + minutes) : minutes
+  //   this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
+  // },
+
+  checkCompletion: function () {
     if (this.remainingSeconds < 0) {
       clearInterval(this.intervalID)
       this.status = 'READY'
       this.intervalID = null
       this.remainingSeconds = this.maxSeconds
+      this.record++
 
-      playBtn.removeAttribute('hidden')
-      pauseBtn.setAttribute('hidden', '')
-      stopBtn.setAttribute('hidden', '')
+      this.ui.playBtn.removeAttribute('hidden')
+      this.ui.pauseBtn.setAttribute('hidden', '')
+      this.ui.stopBtn.setAttribute('hidden', '')
+      this.ui.breakBtn.removeAttribute('hidden')
+
+      // 重複區 
+      // 但是不會顯示 00:00。有點不適合
+      const minutes = Math.floor(this.remainingSeconds / 60)
+      const seconds = this.remainingSeconds % 60
+      this.ui.minutes.textContent = (minutes < 10) ? ('0' + minutes) : minutes
+      this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
     }
   },
   updateTime: function () {
     this.intervalID = setInterval(() => {
+
+      // 重複區
       const minutes = Math.floor(this.remainingSeconds / 60)
       const seconds = this.remainingSeconds % 60
+      this.ui.minutes.textContent = (minutes < 10) ? ('0' + minutes) : minutes
+      this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
 
-      minuteDisplay.textContent = (minutes < 10) ? ('0' + minutes) : minutes
-      secondDisplay.textContent = (seconds < 10) ? ('0' + seconds) : seconds
+
       this.remainingSeconds--
 
-      this.checkEndState()
+      this.checkCompletion()
     }, 1000)
   },
   runApp: function () {
     // Ready 狀態
-    pauseBtn.setAttribute('hidden', '')
-    stopBtn.setAttribute('hidden', '')
+    this.ui.pauseBtn.setAttribute('hidden', '')
+    this.ui.stopBtn.setAttribute('hidden', '')
+    this.ui.breakBtn.setAttribute('hidden', '')
 
     // 按下 play 按鍵
-    playBtn.addEventListener('click', () => {
+    this.ui.playBtn.addEventListener('click', () => {
       this.status = 'RUNNING'
-      playBtn.setAttribute('hidden', '')
-      pauseBtn.removeAttribute('hidden')
-      stopBtn.removeAttribute('hidden')
+      this.ui.playBtn.setAttribute('hidden', '')
+      this.ui.pauseBtn.removeAttribute('hidden')
+      this.ui.stopBtn.removeAttribute('hidden')
 
       this.updateTime()
     })
 
     // 按下 pause 按鍵
-    pauseBtn.addEventListener('click', () => {
+    this.ui.pauseBtn.addEventListener('click', () => {
       this.status = 'PAUSED'
-      playBtn.removeAttribute('hidden')
-      pauseBtn.setAttribute('hidden', '')
+      this.ui.playBtn.removeAttribute('hidden')
+      this.ui.pauseBtn.setAttribute('hidden', '')
 
       clearInterval(this.intervalID)
       this.intervalID = null
     })
 
     // 按下 stop 按鍵
-    stopBtn.addEventListener('click', () => {
+    this.ui.stopBtn.addEventListener('click', () => {
       this.status = 'READY'
-      playBtn.removeAttribute('hidden')
-      pauseBtn.setAttribute('hidden', '')
-      stopBtn.setAttribute('hidden', '')
+      this.ui.playBtn.removeAttribute('hidden')
+      this.ui.pauseBtn.setAttribute('hidden', '')
+      this.ui.stopBtn.setAttribute('hidden', '')
 
       clearInterval(this.intervalID)
       this.intervalID = null
       this.remainingSeconds = this.maxSeconds
-      minuteDisplay.textContent = '00'
-      secondDisplay.textContent = '00'
+
+      // 重複區
+      // ok
+      const minutes = Math.floor(this.remainingSeconds / 60)
+      const seconds = this.remainingSeconds % 60
+      this.ui.minutes.textContent = (minutes < 10) ? ('0' + minutes) : minutes
+      this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
+
+      // this.ui.minutes.textContent = '00'
+      // this.ui.seconds.textContent = '00'
     })
 
-    // breakBtn.addEventListener('click', () => {
-
-    // })
+    breakBtn.addEventListener('click', () => {
+      console.log('Break Time!')
+    })
 
   }
 }
