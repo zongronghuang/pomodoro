@@ -12,7 +12,7 @@
 
 <body class="bg-dark">
 
-    <div class="card text-center w-50 mx-auto mt-3">
+    <div class="card text-center w-50 mx-auto mt-3 font-weight-bolder">
         <div class="card-header">
             Pomod<i class="fas fa-history"></i>ro
         </div>
@@ -46,14 +46,14 @@
             <p>
                 <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
                     aria-controls="collapseExample">
-                    Get History
+                    Your Record
                 </a>
             </p>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                    Nihil anim
-                    keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    <p class="text-success">
+                        <span><i class="fas fa-check-square"></i></span><span class="ml-2" id="record"></span>
+                    </p>
                 </div>
             </div>
 
@@ -61,8 +61,26 @@
         </div>
     </div>
 
+    <!-- Completion Modal -->
+    <div class="modal fade " id="done" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Well Done!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p><i class="far fa-smile-wink display-3"></i></p>
+                    <p>You have completed one more round!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Modal -->
+    <!-- Break Modal -->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -75,10 +93,6 @@
                 </div>
                 <div class="modal-body text-center">
                     <i class="fas fa-leaf display-1 my-auto"></i>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
                 </div>
             </div>
         </div>

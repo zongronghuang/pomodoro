@@ -8,10 +8,12 @@ const pomodoro = {
   ui: {
     minutes: document.querySelector('#minutes'),
     seconds: document.querySelector('#seconds'),
+    record: document.querySelector('#record'),
     playBtn: document.querySelector('#play'),
     pauseBtn: document.querySelector('#pause'),
     stopBtn: document.querySelector('#stop'),
-    breakBtn: document.querySelector('#break')
+    breakBtn: document.querySelector('#break'),
+    doneModal: document.querySelector('#competion')
   },
 
   initializeUI: function () {
@@ -22,6 +24,14 @@ const pomodoro = {
     this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
   },
 
+  showDoneModal: function () {
+    $('#done').modal('show')
+
+    setTimeout(() => {
+      $('#done').modal('hide')
+    }, 3000);
+  },
+
   checkCompletion: function () {
     // 剩餘秒數為 0 -> 重新調整 UI 和設定值
     if (this.remainingSeconds === 0) {
@@ -30,11 +40,14 @@ const pomodoro = {
       this.intervalID = null
       this.remainingSeconds = this.maxSeconds
       this.record++
+      this.ui.record.textContent = this.record
 
       this.ui.playBtn.removeAttribute('hidden')
       this.ui.pauseBtn.setAttribute('hidden', '')
       this.ui.stopBtn.setAttribute('hidden', '')
       this.ui.breakBtn.removeAttribute('hidden')
+
+      this.showDoneModal()
     }
   },
   updateTime: function () {
@@ -56,6 +69,7 @@ const pomodoro = {
   },
   runApp: function () {
     // Ready 狀態
+    this.ui.record.textContent = this.record
     this.ui.pauseBtn.setAttribute('hidden', '')
     this.ui.stopBtn.setAttribute('hidden', '')
     this.ui.breakBtn.setAttribute('hidden', '')
