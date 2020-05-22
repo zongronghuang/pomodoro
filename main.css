@@ -1,1 +1,14 @@
+@keyframes flash {
+    from {color: black;}
+    to  {color: lightgray;}
+}
+
+.flash {
+    color: black;
+    animation-name: flash;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 
