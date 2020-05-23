@@ -19,7 +19,10 @@ const pomodoro = {
     breakBtn: document.querySelector('#break'),
 
     // Modal
-    doneModal: document.querySelector('#competion')
+    doneModal: document.querySelector('#competion'),
+
+    // leaves (break timer)
+    leaves: document.querySelectorAll('.break-count')
   },
 
   initializeUI: function () {
@@ -38,12 +41,25 @@ const pomodoro = {
     }, 3000);
   },
 
-  controlTextFlash: function () {
-    if (this.status === 'PAUSED') {
-      this.ui.timeDisplay.classList.add('flash')
-    } else {
-      this.ui.timeDisplay.classList.remove('flash')
-    }
+  revealLeaves: function () {
+    let count = 0
+
+    const breakCountDown = setInterval(() => {
+      if (count >= 5) {
+        return clearInterval(breakCountDown)
+      }
+
+      this.ui.leaves[count].removeAttribute('hidden')
+      count++
+    }, 1000)
+  },
+
+  addTextFade: function () {
+    this.ui.timeDisplay.classList.add('fade-in')
+  },
+
+  removeTextFade: function () {
+    this.ui.timeDisplay.classList.remove('fade-in')
   },
 
   checkCompletion: function () {
@@ -90,15 +106,14 @@ const pomodoro = {
 
     // 按下 play 按鍵
     this.ui.playBtn.addEventListener('click', () => {
-      //if (this.status !== 'PAUSED') 
-      this.status = 'RUNNING'
+      if (this.status !== 'PAUSED') this.status = 'RUNNING'
 
       this.ui.playBtn.setAttribute('hidden', '')
       this.ui.pauseBtn.removeAttribute('hidden')
       this.ui.stopBtn.removeAttribute('hidden')
       this.ui.breakBtn.setAttribute('hidden', '')
 
-      this.controlTextFlash()
+      this.removeTextFade()
       this.updateTime()
 
     })
@@ -113,7 +128,7 @@ const pomodoro = {
       clearInterval(this.intervalID)
       this.intervalID = null
 
-      this.controlTextFlash()
+      this.addTextFade()
     })
 
     // 按下 stop 按鍵
@@ -129,11 +144,13 @@ const pomodoro = {
       this.remainingSeconds = this.maxSeconds
 
       this.initializeUI()
-      this.controlTextFlash()
+      this.removeTextFade()
     })
 
-    breakBtn.addEventListener('click', () => {
+    this.ui.breakBtn.addEventListener('click', () => {
       console.log('Break Time!')
+
+      this.revealLeaves()
     })
   }
 }

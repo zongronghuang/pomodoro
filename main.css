@@ -3,7 +3,7 @@
     to  {color: lightgray;}
 }
 
-.flash {
+.fade-in {
     color: black;
     animation-name: flash;
     animation-duration: 3s;
