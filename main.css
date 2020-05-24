@@ -1,3 +1,20 @@
+.card, #play, #break, #pause, #stop {
+  border: 2px solid black;
+}
+
+.card-header, .card-footer, .modal-header {
+ background-color: mediumaquamarine;
+}
+
+.card-body {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.fa-smile-wink {
+    border-radius: 100%;
+}
+
 @keyframes flash {
     from {color: black;}
     to  {color: lightgray;}

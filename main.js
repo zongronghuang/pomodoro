@@ -22,7 +22,12 @@ const pomodoro = {
     doneModal: document.querySelector('#competion'),
 
     // leaves (break timer)
-    leaves: document.querySelectorAll('.break-count')
+    leaves: document.querySelectorAll('.break-count'),
+
+    // audios
+    bellAudio: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
+    countryAudio: 'http://bbcsfx.acropolis.org.uk/assets/07060026.wav',
+    streamAudio: 'http://bbcsfx.acropolis.org.uk/assets/07064019.wav'
   },
 
   initializeUI: function () {
@@ -34,17 +39,32 @@ const pomodoro = {
   },
 
   showDoneModal: function () {
+    const audio = new Audio(this.ui.bellAudio)
+    audio.volume = 0.1
+    audio.play()
+
     $('#done').modal('show')
 
     setTimeout(() => {
       $('#done').modal('hide')
-    }, 3000);
+    }, 5000);
   },
 
   revealLeaves: function () {
     let count = 0
 
+    // leave 初始化回 hidden 狀態
+    this.ui.leaves.forEach(leave => {
+      leave.setAttribute('hidden', '')
+    })
+
     const breakCountDown = setInterval(() => {
+      if (count === 4) {
+        const audio = new Audio(this.ui.bellAudio)
+        audio.volume = 0.1
+        audio.play()
+      }
+
       if (count >= 5) {
         return clearInterval(breakCountDown)
       }
@@ -149,6 +169,7 @@ const pomodoro = {
 
     this.ui.breakBtn.addEventListener('click', () => {
       console.log('Break Time!')
+      this.ui.breakBtn.setAttribute('hidden', '')
 
       this.revealLeaves()
     })
