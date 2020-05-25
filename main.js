@@ -39,9 +39,9 @@ const pomodoro = {
   },
 
   showDoneModal: function () {
-    const audio = new Audio(this.ui.bellAudio)
-    audio.volume = 0.1
-    audio.play()
+    // const audio = new Audio(this.ui.bellAudio)
+    // audio.volume = 0.1
+    // audio.play()
 
     $('#done').modal('show')
 
@@ -59,11 +59,11 @@ const pomodoro = {
     })
 
     const breakCountDown = setInterval(() => {
-      if (count === 4) {
-        const audio = new Audio(this.ui.bellAudio)
-        audio.volume = 0.1
-        audio.play()
-      }
+      // if (count === 4) {
+      //   const audio = new Audio(this.ui.bellAudio)
+      //   audio.volume = 0.1
+      //   audio.play()
+      // }
 
       if (count >= 5) {
         return clearInterval(breakCountDown)

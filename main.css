@@ -1,14 +1,18 @@
-.card, #play, #break, #pause, #stop {
+#app, #play, #break, #pause, #stop {
   border: 2px solid black;
+}
+
+
+#app, #collapseSettings, #collapseRecord {
+    border-radius: 5px;
 }
 
 .card-header, .card-footer, .modal-header {
  background-color: mediumaquamarine;
 }
 
-.card-body {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+a:hover {
+    text-decoration: none;
 }
 
 .fa-smile-wink {

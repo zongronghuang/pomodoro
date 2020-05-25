@@ -13,9 +13,12 @@
 
 <body class="bg-light">
 
-    <div class="card text-center w-50 mx-auto mt-3 font-weight-bolder">
-        <div class="card-header">
-            Pomod<i class="fas fa-history"></i>ro
+    <div class="card text-center w-50 mx-auto mt-3 font-weight-bolder" id="app">
+        <div class="card-header text-monospace">
+            <a data-toggle="collapse" href="#collapseSettings" role="button" aria-expanded="false"
+                aria-controls="collapseSettings">
+                Pomod<i class="fas fa-history"></i>ro
+            </a>
         </div>
         <div class="card-body bg-light">
             <h5 class="card-title"></h5>
@@ -45,20 +48,54 @@
                 </button>
             </div>
 
-            <p>
-                <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-                    aria-controls="collapseExample">
-                    Your Record
+
+            <!-- 摺疊清單  Pomodoro 累積數量 -->
+            <p class="text-monospace mt-3">
+                <a data-toggle="collapse" href="#collapseRecord" role="button" aria-expanded="false"
+                    aria-controls="collapseRecord">
+                    View Result
                 </a>
             </p>
-            <div class=" collapse" id="collapseExample">
+            <div class="collapse text-monospace" id="collapseRecord">
                 <div class="card card-body">
+                    <header>Today's Success</header>
+                    <time class="mt-4" id="today"></time>
                     <p class="text-success">
-                        <span><i class="fas fa-check-square"></i></span><span class="ml-2" id="record"></span>
+                        <span><i class="fas fa-check-square h2"></i></span><span class="ml-3 h2" id="record"></span>
                     </p>
                 </div>
             </div>
 
+
+            <!-- 摺疊清單  app 設定值 -->
+            <div class="collapse mt-3 text-monospace" id="collapseSettings">
+                <div class="card card-body">
+                    <header>Settings</header>
+                    <p class="mt-4">
+                        <select class="custom-select">
+                            <option selected>Choose a theme</option>
+                            <option value="green">Green</option>
+                            <option value="blue">Blue</option>
+                        </select>
+
+                        <select class="custom-select mt-3">
+                            <option selected>Choose a display language</option>
+                            <option value="en">English</option>
+                            <option value="zh">繁體中文</option>
+                        </select>
+                    </p>
+                    <p class="mt-4">
+                        <label for="pomodoro-time">Pomodoro time</label>
+                        <input type="range" class="custom-range mt-2" min="0" max="50" step="1" name="pomodoro-range"
+                            id="pomodoro-range">
+
+                        <label for="break-time" class="mt-4">Break time</label>
+                        <input type="range" class="custom-range mt-2" min="0" max="15" step="1" name="break-range"
+                            id="break-range">
+                    </p>
+
+                </div>
+            </div>
 
         </div>
     </div>
