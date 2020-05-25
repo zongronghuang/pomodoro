@@ -12,11 +12,19 @@ const pomodoro = {
     seconds: document.querySelector('#seconds'),
     record: document.querySelector('#record'),
 
-    // Buttons
+    // buttons
     playBtn: document.querySelector('#play'),
     pauseBtn: document.querySelector('#pause'),
     stopBtn: document.querySelector('#stop'),
     breakBtn: document.querySelector('#break'),
+
+    // app settings
+    collapseSettings: document.querySelector('#collapseSettings'),
+    theme: document.querySelector('#theme'),
+    language: document.querySelector('#language'),
+    audio: document.querySelector('#audio'),
+    pomodoroLength: document.querySelector('#pomodoro-length'),
+    breakLength: document.querySelector('#break-length'),
 
     // Modal
     doneModal: document.querySelector('#competion'),
@@ -173,6 +181,19 @@ const pomodoro = {
 
       this.revealLeaves()
     })
+
+    this.ui.collapseSettings.addEventListener('change', () => {
+      console.log('theme', this.ui.theme.value)
+      console.log('language', this.ui.language.value)
+      console.log('audio', this.ui.audio.value)
+      console.log('pomodoro range', this.ui.pomodoroLength.value)
+      console.log('break range', this.ui.breakLength.value)
+
+      // 顯示值
+      // 更換 theme
+      // change audio (with a demo upon change)
+    })
+
   }
 }
 

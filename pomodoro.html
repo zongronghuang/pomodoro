@@ -72,26 +72,36 @@
                 <div class="card card-body">
                     <header>Settings</header>
                     <p class="mt-4">
-                        <select class="custom-select">
+                        <select class="custom-select" id="theme">
                             <option selected>Choose a theme</option>
                             <option value="green">Green</option>
                             <option value="blue">Blue</option>
                         </select>
 
-                        <select class="custom-select mt-3">
+                        <select class="custom-select mt-3" id="language">
                             <option selected>Choose a display language</option>
                             <option value="en">English</option>
                             <option value="zh">繁體中文</option>
                         </select>
+
+                        <select class="custom-select mt-3" id="audio">
+                            <option selected>Choose a sound alert</option>
+                            <option value="bell">Bell</option>
+                            <option value="stream">Stream</option>
+                            <option value="mute">Mute</option>
+                        </select>
                     </p>
                     <p class="mt-4">
                         <label for="pomodoro-time">Pomodoro time</label>
-                        <input type="range" class="custom-range mt-2" min="0" max="50" step="1" name="pomodoro-range"
-                            id="pomodoro-range">
+                        <small>11</small>
+                        <input type="range" class="custom-range mt-2" min="25" max="50" step="1" name="pomodoro-length"
+                            id="pomodoro-length">
 
                         <label for="break-time" class="mt-4">Break time</label>
-                        <input type="range" class="custom-range mt-2" min="0" max="15" step="1" name="break-range"
-                            id="break-range">
+                        <small><small>11</small> mins</small>
+
+                        <input type="range" class="custom-range mt-1" min="1" max="15" step="1" name="break-length"
+                            id="break-length">
                     </p>
 
                 </div>
