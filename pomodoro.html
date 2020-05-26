@@ -68,7 +68,7 @@
 
 
             <!-- 摺疊清單  app 設定值 -->
-            <div class="collapse mt-3 text-monospace" id="collapseSettings">
+            <div class="collapse mt-3 text-monospace mx-auto" id="collapseSettings">
                 <div class="card card-body">
                     <header>Settings</header>
                     <p class="mt-4">
@@ -92,16 +92,24 @@
                         </select>
                     </p>
                     <p class="mt-4">
-                        <label for="pomodoro-time">Pomodoro time</label>
-                        <small>11</small>
-                        <input type="range" class="custom-range mt-2" min="25" max="50" step="1" name="pomodoro-length"
-                            id="pomodoro-length">
+                    <div class="d-flex justify-content-around">
+                        <label for="pomodoro-time" class="w-25">Pomodoro time</label>
+                        <input type="range" class="custom-range w-50" min="1" max="50" step="1" value="25"
+                            name="pomodoro-length" id="pomodoro-length">
 
-                        <label for="break-time" class="mt-4">Break time</label>
-                        <small><small>11</small> mins</small>
+                        <small><small id="pomodoro-display" class="ml-3"></small> mins</small>
+                    </div>
 
-                        <input type="range" class="custom-range mt-1" min="1" max="15" step="1" name="break-length"
-                            id="break-length">
+
+                    <div class="d-flex justify-content-around">
+                        <label for="break-time" class="w-25">Break time</label>
+                        <input type="range" class="custom-range w-50" min="1" max="15" step="1" value="5"
+                            name="break-length" id="break-length">
+
+                        <small><small id="break-display" class="ml-3"></small> mins</small>
+                    </div>
+
+
                     </p>
 
                 </div>

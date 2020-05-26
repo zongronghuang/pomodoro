@@ -8,6 +8,8 @@ const pomodoro = {
   ui: {
     // text display
     timeDisplay: document.querySelector('#time-display'),
+    pomodoroDisplay: document.querySelector('#pomodoro-display'),
+    breakDisplay: document.querySelector('#break-display'),
     minutes: document.querySelector('#minutes'),
     seconds: document.querySelector('#seconds'),
     record: document.querySelector('#record'),
@@ -128,6 +130,8 @@ const pomodoro = {
   runApp: function () {
     // Ready 狀態
     this.ui.record.textContent = this.record
+    this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
+    this.ui.breakDisplay.textContent = this.ui.breakLength.value
     this.ui.pauseBtn.setAttribute('hidden', '')
     this.ui.stopBtn.setAttribute('hidden', '')
     this.ui.breakBtn.setAttribute('hidden', '')
@@ -190,6 +194,11 @@ const pomodoro = {
       console.log('break range', this.ui.breakLength.value)
 
       // 顯示值
+
+      this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
+      this.ui.breakDisplay.textContent = this.ui.breakLength.value
+
+
       // 更換 theme
       // change audio (with a demo upon change)
     })
