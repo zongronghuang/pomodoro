@@ -7,8 +7,16 @@
     border-radius: 5px;
 }
 
-.card-header, .card-footer, .modal-header {
- background-color: mediumaquamarine;
+.coloring-area {
+     background-color: mediumaquamarine;
+}
+
+.aqua-marine {
+    background-color: mediumaquamarine;
+}
+
+.cornflower-blue {
+    background-color: cornflowerblue;
 }
 
 a:hover {

@@ -3,7 +3,10 @@ const pomodoro = {
   record: 0,
   maxSeconds: 10,
   remainingSeconds: 10,
+  breakSeconds: 10,
   intervalID: null,
+  theme: 'default',
+  soundAlert: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
 
   ui: {
     // text display
@@ -13,6 +16,9 @@ const pomodoro = {
     minutes: document.querySelector('#minutes'),
     seconds: document.querySelector('#seconds'),
     record: document.querySelector('#record'),
+
+    // theme-applied areas
+    coloringAreas: document.querySelectorAll('.coloring-area'),
 
     // buttons
     playBtn: document.querySelector('#play'),
@@ -32,12 +38,14 @@ const pomodoro = {
     doneModal: document.querySelector('#competion'),
 
     // leaves (break timer)
-    leaves: document.querySelectorAll('.break-count'),
+    leaves: document.querySelectorAll('.break-count')
+  },
 
+  audio: {
     // audios
-    bellAudio: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
-    countryAudio: 'http://bbcsfx.acropolis.org.uk/assets/07060026.wav',
-    streamAudio: 'http://bbcsfx.acropolis.org.uk/assets/07064019.wav'
+    bell: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
+    country: 'http://bbcsfx.acropolis.org.uk/assets/07060026.wav',
+    stream: 'http://bbcsfx.acropolis.org.uk/assets/07064019.wav'
   },
 
   initializeUI: function () {
@@ -49,7 +57,7 @@ const pomodoro = {
   },
 
   showDoneModal: function () {
-    // const audio = new Audio(this.ui.bellAudio)
+    // const audio = new Audio(this.soundAlert)
     // audio.volume = 0.1
     // audio.play()
 
@@ -70,7 +78,7 @@ const pomodoro = {
 
     const breakCountDown = setInterval(() => {
       // if (count === 4) {
-      //   const audio = new Audio(this.ui.bellAudio)
+      //   const audio = new Audio(this.soundAlert)
       //   audio.volume = 0.1
       //   audio.play()
       // }
@@ -81,7 +89,7 @@ const pomodoro = {
 
       this.ui.leaves[count].removeAttribute('hidden')
       count++
-    }, 1000)
+    }, (this.breakSeconds * 1000) / 5)
   },
 
   addTextFade: function () {
@@ -186,7 +194,7 @@ const pomodoro = {
       this.revealLeaves()
     })
 
-    this.ui.collapseSettings.addEventListener('change', () => {
+    this.ui.collapseSettings.addEventListener('input', () => {
       console.log('theme', this.ui.theme.value)
       console.log('language', this.ui.language.value)
       console.log('audio', this.ui.audio.value)
@@ -194,13 +202,30 @@ const pomodoro = {
       console.log('break range', this.ui.breakLength.value)
 
       // 顯示值
-
       this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
       this.ui.breakDisplay.textContent = this.ui.breakLength.value
+      // 這邊的值之後要修改成 * 60
+      this.maxSeconds = this.ui.pomodoroLength.value * 10
+      this.remainingSeconds = this.ui.pomodoroLength.value * 10
 
 
       // 更換 theme
+      // 用 switch
+
+      switch theme
+      if (this.coloringAreas.classList.contains('.aqua-marine')) {
+        this.coloringAreas.forEach(area => {
+          area.classList.remove('.aqua-marine')
+
+        })
+      } else if () {
+
+      }
+
+
       // change audio (with a demo upon change)
+      this.soundAlert = this.audio[this.ui.audio.value]
+      console.log('sound alert', this.soundAlert)
     })
 
   }
