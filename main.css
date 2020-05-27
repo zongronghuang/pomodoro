@@ -8,15 +8,19 @@
 }
 
 .coloring-area {
-     background-color: mediumaquamarine;
+     background-color: transparent;
 }
 
-.aqua-marine {
+.green {
     background-color: mediumaquamarine;
 }
 
-.cornflower-blue {
+.blue {
     background-color: cornflowerblue;
+}
+
+.red {
+    background-color: darksalmon;
 }
 
 a:hover {

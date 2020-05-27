@@ -5,7 +5,6 @@ const pomodoro = {
   remainingSeconds: 10,
   breakSeconds: 10,
   intervalID: null,
-  theme: 'default',
   soundAlert: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
 
   ui: {
@@ -211,20 +210,32 @@ const pomodoro = {
 
       // 更換 theme
       // 用 switch
-
-      switch theme
-      if (this.coloringAreas.classList.contains('.aqua-marine')) {
-        this.coloringAreas.forEach(area => {
-          area.classList.remove('.aqua-marine')
-
-        })
-      } else if () {
-
+      switch (this.ui.theme.value) {
+        case 'blue':
+          this.ui.coloringAreas.forEach(area => {
+            area.classList.remove('green', 'red')
+            area.classList.add('blue')
+          })
+          break
+        case 'red':
+          this.ui.coloringAreas.forEach(area => {
+            area.classList.remove('green', 'blue')
+            area.classList.add('red')
+          })
+          break
+        case 'green':
+          this.ui.coloringAreas.forEach(area => {
+            area.classList.remove('blue', 'red')
+            area.classList.add('green')
+          })
+          break
+        default:
+          break
       }
 
 
       // change audio (with a demo upon change)
-      this.soundAlert = this.audio[this.ui.audio.value]
+      this.soundAlert = this.audio[this.ui.audio.value] || this.soundAlert
       console.log('sound alert', this.soundAlert)
     })
 
