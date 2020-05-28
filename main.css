@@ -27,6 +27,10 @@ a:hover {
     text-decoration: none;
 }
 
+title[lang=zh], label[lang=zh], span[lang=zh], option[lang=zh] {
+    display: none;
+}
+
 .fa-smile-wink {
     border-radius: 100%;
 }

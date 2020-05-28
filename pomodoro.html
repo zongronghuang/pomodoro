@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>
-        <span lang="en"></span>Pomodoro</span>
-        <span lang="zh" hidden>蕃茄鐘</span>
-    </title>
+    <title lang="en">Pomodoro</title>
+    <title lang="zh">蕃茄鐘</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -57,14 +56,14 @@
                 <a data-toggle="collapse" href="#collapseRecord" role="button" aria-expanded="false"
                     aria-controls="collapseRecord" class="text-dark text-monospace">
                     <span lang="en">View Result</span>
-                    <span lang="zh" hidden>檢視結果</span>
+                    <span lang="zh">檢視結果</span>
                 </a>
             </p>
             <div class="collapse text-monospace" id="collapseRecord">
                 <div class="card card-body">
                     <header>
                         <span lang="en">Today's Success</span>
-                        <span lang="zh" hidden>今日成功紀錄</span>
+                        <span lang="zh">今日成功紀錄</span>
                     </header>
                     <time class="mt-4" id="today"></time>
                     <p class="text-success">
@@ -82,107 +81,71 @@
                 <div class="card card-body">
                     <header>
                         <span lang="en">Settings</span>
-                        <span lang="zh" hidden>設定</span>
+                        <span lang="zh">設定</span>
                     </header>
                     <p class="mt-4">
 
                         <!-- 主題顏色選單 -->
+                        <label lang="en" for="theme">THEME</label>
+                        <label lang="zh" for="theme">主題顏色</label>
+                        <select class="custom-select" id="theme">
+                            <!-- <option lang="en">Choose a theme</option>
+                            <option lang="zh">選擇主題顏色</option> -->
 
-                        <select lang="en" class="custom-select" id="theme">
-                            <option selected>
-                                Choose a theme
-                            </option>
-                            <option value="green">
-                                Green
-                            </option>
-                            <option value="blue">
-                                Blue
-                            </option>
-                            <option value="red">
-                                Red
-                            </option>
+                            <option lang="en" value="green">Green</option>
+                            <option lang="zh" value="green">綠色</option>
+
+                            <option lang="en" value="blue">Blue</option>
+                            <option lang="zh" value="blue">藍色</option>
+
+                            <option lang="en" value="red">Red</option>
+                            <option lang="zh" value="red">紅色</option>
                         </select>
 
-                        <select lang="zh" class="custom-select" id="theme" hidden>
-                            <option selected>
-                                選擇主題顏色
-                            </option>
-                            <option value="green">
-                                綠色
-                            </option>
-                            <option value="blue">
-                                藍色
-                            </option>
-                            <option value="red">
-                                紅色
-                            </option>
-                        </select>
 
                         <!-- 顯示語言選單 -->
 
-                        <select lang="en" class="custom-select mt-3" id="language">
-                            <option selected>
-                                Choose a display language
-                            </option>
-                            <option value="en">English</option>
-                            <option value="zh">Traditional Chinese</option>
-                        </select>
+                        <select class="custom-select mt-3" id="language">
+                            <option lang="en">Choose a display language</option>
+                            <option lang="zh">選擇顯示語言</option>
 
-                        <select lang="zh" class="custom-select mt-3" id="language" hidden>
-                            <option selected>
-                                選擇顯示語言
-                            </option>
-                            <option value="en">英文</option>
-                            <option value="zh">繁體中文</option>
-                        </select>
+                            <option lang="en" value="en">English</option>
+                            <option lang="zh" value="en">英文</option>
 
+                            <option lang="en" value="zh">Traditional Chinese</option>
+                            <option lang="zh" value="zh">繁體中文</option>
+                        </select>
 
                         <!-- 提示音選單 -->
 
+                        <select class="custom-select mt-3" id="audio">
+                            <option lang="en">Choose a sound alert</option>
+                            <option lang="zh">選擇提示音</option>
 
-                        <select lang="en" class="custom-select mt-3" id="audio">
-                            <option selected>
-                                Choose a sound alert
-                            </option>
-                            <option value="bell">
-                                Bell
-                            </option>
-                            <option value="stream">
-                                Stream
-                            </option>
-                            <option value="none">
-                                None
-                            </option>
+                            <option lang="en" value="bell">Bell</option>
+                            <option lang="zh" value="bell">鐘聲</option>
+
+                            <option lang="en" value="stream">Stream</option>
+                            <option lang="zh" value="stream">溪流</option>
+
+                            <option lang="en" value="none">None</option>
+                            <option lang="zh" value="none">無</option>
                         </select>
 
 
-                        <select lang="zh" class="custom-select mt-3" id="audio" hidden>
-                            <option selected>
-                                選擇提示音
-                            </option>
-                            <option value="bell">
-                                鐘聲
-                            </option>
-                            <option value="stream">
-                                溪流
-                            </option>
-                            <option value="none">
-                                無
-                            </option>
-                        </select>
                     </p>
                     <p class="mt-4">
                     <div class="d-flex justify-content-around">
                         <label for="pomodoro-time" class="w-25">
                             <span lang="en">Pomodoro time</span>
-                            <span lang="zh" hidden>蕃茄鐘時間</span>
+                            <span lang="zh">蕃茄鐘時間</span>
                         </label>
                         <input type="range" class="custom-range w-50" min="1" max="50" step="1" value="25"
                             name="pomodoro-length" id="pomodoro-length">
 
                         <small><small id="pomodoro-display" class="ml-3"></small>
                             <span lang="en">mins</span>
-                            <span lang="zh" hidden>分</span>
+                            <span lang="zh">分</span>
                         </small>
                     </div>
 
@@ -190,14 +153,14 @@
                     <div class="d-flex justify-content-around">
                         <label for="break-time" class="w-25">
                             <span lang="en">Break time</span>
-                            <span lang="zh" hidden>休息時間</span>
+                            <span lang="zh">休息時間</span>
                         </label>
                         <input type="range" class="custom-range w-50" min="1" max="15" step="1" value="5"
                             name="break-length" id="break-length">
 
                         <small><small id="break-display" class="ml-3"></small>
                             <span lang="en">mins</span>
-                            <span lang="zh" hidden>分</span>
+                            <span lang="zh">分</span>
                         </small>
                     </div>
 
@@ -218,7 +181,7 @@
                 <div class="modal-header coloring-area">
                     <h5 class="modal-title" id="exampleModalLabel">
                         <span lang="en">Well Done</span>
-                        <span lang="zh" hidden>表現不錯</span>
+                        <span lang="zh">表現不錯</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -228,7 +191,7 @@
                     <p><i class="far fa-smile-wink display-3 bg-warning"></i></p>
                     <p>
                         <span lang="en">You have completed one more round!</span>
-                        <span lang="zh" hidden>你又完成了一個循環！</span>
+                        <span lang="zh">你又完成了一個循環！</span>
                     </p>
                 </div>
             </div>
@@ -243,7 +206,7 @@
                 <div class="modal-header coloring-area">
                     <h5 class="modal-title" id="staticBackdropLabel">
                         <span lang="en">Break Time</span>
-                        <span lang="zh" hidden>休息時間</span>
+                        <span lang="zh">休息時間</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -252,7 +215,7 @@
                 <div class="modal-body text-center">
                     <p>
                         <span lang="en">Enjoy a break until you grow five leaves!</span>
-                        <span lang="zh" hidden>好好休息，累積到五片樹葉後再行動！</span>
+                        <span lang="zh">好好休息，累積到五片樹葉後再行動！</span>
                     </p>
                     <i class="fas text-success fa-leaf display-3 my-auto break-count" hidden></i>
                     <i class="fas text-success fa-leaf display-3 my-auto break-count" hidden></i>

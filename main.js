@@ -28,7 +28,7 @@ const pomodoro = {
     // app settings
     collapseSettings: document.querySelector('#collapseSettings'),
     theme: document.querySelector('#theme'),
-    language: document.querySelector('#language[lang=en]'),
+    language: document.querySelector('#language'),
     audio: document.querySelector('#audio'),
     pomodoroLength: document.querySelector('#pomodoro-length'),
     breakLength: document.querySelector('#break-length'),
@@ -210,27 +210,24 @@ const pomodoro = {
 
       switch (this.ui.language.value) {
         case 'zh':
-          console.log('laaaa  1', this.ui.language.value)
-          this.ui.language = document.querySelector('#language[lang=zh]')
-          document.querySelectorAll('[lang=en]').forEach(element => {
-            element.setAttribute('hidden', '')
+          document.querySelector('option[lang=en]').textContent = '我就'
+          document.querySelectorAll('title[lang="en"], label[lang="en"], option[lang="en"], span[lang="en"]').forEach(element => {
+            element.style.display = "none"
           })
 
-          document.querySelectorAll('[lang=zh]').forEach(element => {
-            element.removeAttribute('hidden')
+          document.querySelectorAll('title[lang="zh"], label[lang="zh"], option[lang="zh"], span[lang="zh"]').forEach(element => {
+            element.style.display = "initial"
           })
 
           break
         case 'en':
         default:
-          console.log('laaaa  2', this.ui.language.value)
-          this.ui.language = document.querySelector('#language[lang=en]')
-          document.querySelectorAll('[lang=zh]').forEach(element => {
-            element.setAttribute('hidden', '')
+          document.querySelectorAll('title[lang="zh"], label[lang="zh"], option[lang="zh"], span[lang="zh"]').forEach(element => {
+            element.style.display = "none"
           })
 
-          document.querySelectorAll('[lang=en]').forEach(element => {
-            element.removeAttribute('hidden')
+          document.querySelectorAll('title[lang="en"], label[lang="en"], option[lang="en"], span[lang="en"]').forEach(element => {
+            element.style.display = "initial"
           })
           break
       }
