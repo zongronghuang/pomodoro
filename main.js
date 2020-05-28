@@ -28,7 +28,7 @@ const pomodoro = {
     // app settings
     collapseSettings: document.querySelector('#collapseSettings'),
     theme: document.querySelector('#theme'),
-    language: document.querySelector('#language'),
+    language: document.querySelector('#language[lang=en]'),
     audio: document.querySelector('#audio'),
     pomodoroLength: document.querySelector('#pomodoro-length'),
     breakLength: document.querySelector('#break-length'),
@@ -41,7 +41,6 @@ const pomodoro = {
   },
 
   audio: {
-    // audios
     bell: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
     country: 'http://bbcsfx.acropolis.org.uk/assets/07060026.wav',
     stream: 'http://bbcsfx.acropolis.org.uk/assets/07064019.wav'
@@ -207,6 +206,34 @@ const pomodoro = {
       this.maxSeconds = this.ui.pomodoroLength.value * 10
       this.remainingSeconds = this.ui.pomodoroLength.value * 10
 
+      // 更換語言
+
+      switch (this.ui.language.value) {
+        case 'zh':
+          console.log('laaaa  1', this.ui.language.value)
+          this.ui.language = document.querySelector('#language[lang=zh]')
+          document.querySelectorAll('[lang=en]').forEach(element => {
+            element.setAttribute('hidden', '')
+          })
+
+          document.querySelectorAll('[lang=zh]').forEach(element => {
+            element.removeAttribute('hidden')
+          })
+
+          break
+        case 'en':
+        default:
+          console.log('laaaa  2', this.ui.language.value)
+          this.ui.language = document.querySelector('#language[lang=en]')
+          document.querySelectorAll('[lang=zh]').forEach(element => {
+            element.setAttribute('hidden', '')
+          })
+
+          document.querySelectorAll('[lang=en]').forEach(element => {
+            element.removeAttribute('hidden')
+          })
+          break
+      }
 
       // 更換 theme
       // 用 switch
