@@ -192,7 +192,9 @@ const pomodoro = {
       this.revealLeaves()
     })
 
-    this.ui.collapseSettings.addEventListener('input', () => {
+    this.ui.collapseSettings.addEventListener('input', event => {
+
+
       console.log('theme', this.ui.theme.value)
       console.log('language', this.ui.language.value)
       console.log('audio', this.ui.audio.value)
@@ -207,28 +209,41 @@ const pomodoro = {
       this.remainingSeconds = this.ui.pomodoroLength.value * 10
 
       // 更換語言
-
       switch (this.ui.language.value) {
         case 'zh':
-          document.querySelector('option[lang=en]').textContent = '我就'
           document.querySelectorAll('title[lang="en"], label[lang="en"], option[lang="en"], span[lang="en"]').forEach(element => {
             element.style.display = "none"
+
+            if (element.hasAttribute('selected')) element.removeAttribute('selected')
           })
 
           document.querySelectorAll('title[lang="zh"], label[lang="zh"], option[lang="zh"], span[lang="zh"]').forEach(element => {
-            element.style.display = "initial"
+            element.style.display = "inline"
+
+            if (element.value === this.ui.theme.value || element.value === this.ui.language.value || element.value === this.ui.audio.value) {
+              element.setAttribute('selected', '')
+            }
           })
 
           break
+
         case 'en':
-        default:
           document.querySelectorAll('title[lang="zh"], label[lang="zh"], option[lang="zh"], span[lang="zh"]').forEach(element => {
             element.style.display = "none"
+
+            if (element.hasAttribute('selected')) element.removeAttribute('selected')
           })
 
           document.querySelectorAll('title[lang="en"], label[lang="en"], option[lang="en"], span[lang="en"]').forEach(element => {
-            element.style.display = "initial"
+            element.style.display = "inline"
+
+            if (element.value === this.ui.theme.value || element.value === this.ui.language.value || element.value === this.ui.audio.value) {
+              element.setAttribute('selected', '')
+            }
           })
+          break
+
+        default:
           break
       }
 
@@ -241,26 +256,46 @@ const pomodoro = {
             area.classList.add('blue')
           })
           break
+
         case 'red':
           this.ui.coloringAreas.forEach(area => {
             area.classList.remove('green', 'blue')
             area.classList.add('red')
           })
           break
+
         case 'green':
           this.ui.coloringAreas.forEach(area => {
             area.classList.remove('blue', 'red')
             area.classList.add('green')
           })
           break
+
         default:
           break
       }
 
 
       // change audio (with a demo upon change)
-      this.soundAlert = this.audio[this.ui.audio.value] || this.soundAlert
-      console.log('sound alert', this.soundAlert)
+
+      switch (this.audio.value) {
+        case 'bell':
+          this.soundAlert = this.audio.bell
+          break
+
+        case 'stream':
+          this.soundAlert = this.audio.stream
+          break
+
+        case 'none':
+          this.soundAlert = null
+          break
+
+        default:
+          break
+      }
+
+      event.preventDefault()
     })
 
   }
