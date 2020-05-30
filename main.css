@@ -27,9 +27,16 @@ a:hover {
     text-decoration: none;
 }
 
-title[lang=zh], label[lang=zh], span[lang=zh], option[lang=zh] {
+[lang=zh] {
     display: none;
 }
+
+.square {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
 
 .fa-smile-wink {
     border-radius: 100%;

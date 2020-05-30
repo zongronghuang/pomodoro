@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title lang="en">Pomodoro</title>
-
+    <title>Pomodoro</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -78,154 +77,106 @@
             <!-- 摺疊清單  app 設定值 -->
             <div class="collapse mt-3 text-monospace mx-auto" id="collapseSettings">
                 <div class="card card-body">
-                    <form action="/">
 
+                    <header>
+                        <span lang="en">Settings</span>
+                        <span lang="zh">設定</span>
+                    </header>
 
-                        <header>
-                            <span lang="en">Settings</span>
-                            <span lang="zh">設定</span>
-                        </header>
-
-                        <p class="mt-4">
-                            <span lang="en">Color</span>
-                            <span lang="zh">顏色</span>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="color" id="green" value="green">
-                            <label lang="en" class="form-check-label" for="green">Green</label>
-                            <label lang="zh" class="form-check-label" for="green">綠色</label>
+                    <form id="form">
+                        <div class="mt-4 d-flex justify-content-start">
+                            <span lang="en">Theme</span>
+                            <span lang="zh">主題顏色</span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="theme" id="green" value="green"
+                                    checked>
+                                <label lang="en" class="form-check-label" for="green">Green
+                                    <div class="green square"> </div>
+                                </label>
+                                <label lang="zh" class="form-check-label" for="green">綠色
+                                    <div class="green square"></div>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="theme" id="blue" value="blue">
+                                <label lang="en" class="form-check-label" for="blue">Blue
+                                    <div class="blue square"> </div>
+                                </label>
+                                <label lang="zh" class="form-check-label" for="blue">藍色
+                                    <div class="blue square"> </div>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="theme" id="red" value="red">
+                                <label lang="en" class="form-check-label" for="red">Red
+                                    <div class="red square"> </div>
+                                </label>
+                                <label lang="zh" class="form-check-label" for="red">紅色
+                                    <div class="red square"> </div>
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="color" id="blue" value="blue">
-                            <label lang="en" class="form-check-label" for="blue">Blue</label>
-                            <label lang="zh" class="form-check-label" for="blue">藍色</label>
+
+                        <div class="mt-4 d-flex justify-content-start">
+                            <span lang="en">Language</span>
+                            <span lang="zh">語言</span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="language" id="en" value="en" checked>
+                                <label lang="en" class="form-check-label" for="en">English</label>
+                                <label lang="zh" class="form-check-label" for="en">英文</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="language" id="zh" value="zh">
+                                <label lang="en" class="form-check-label" for="zh">Traditional Chinese</label>
+                                <label lang="zh" class="form-check-label" for="zh">中文</label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="color" id="red" value="red">
-                            <label lang="en" class="form-check-label" for="red">Red</label>
-                            <label lang="zh" class="form-check-label" for="red"">紅色</label>
+
+                        <div class="mt-4 d-flex justify-content-start">
+                            <span lang="en">Sound alert</span>
+                            <span lang="zh">提示音</span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="audio" id="bell" value="bell"
+                                    checked>
+                                <label lang="en" class="form-check-label" for="bell">Bell</label>
+                                <label lang="zh" class="form-check-label" for="bell">鐘聲</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="audio" id="stream" value="stream">
+                                <label lang="en" class="form-check-label" for="stream">Stream</label>
+                                <label lang="zh" class="form-check-label" for="stream">溪流</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="audio" id="none" value="none">
+                                <label lang="en" class="form-check-label" for="none">None</label>
+                                <label lang="zh" class="form-check-label" for="none">無</label>
+                            </div>
                         </div>
-                        
-<br>
-                        <span lang=" en">Language</span>
-                                <span lang="zh">語言</span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="language"" id=" en" value="en">
-                                    <label lang="en" class="form-check-label" for="en">English</label>
-                                    <label lang="zh" class="form-check-label" for="en">英文</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="language" id="zh" value="zh">
-                                    <label lang="en" class="form-check-label" for="zh">Traditional Chinese</label>
-                                    <label lang="zh" class="form-check-label" for="zh">中文</label>
-                                </div>
 
-                                <br>
-                                <span lang=" en">Theme</span>
-                                <span lang="zh">主題顏色</span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="color" id="green" value="green">
-                                    <label lang="en" class="form-check-label" for="green">Green</label>
-                                    <label lang="zh" class="form-check-label" for="green">綠色</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="color" id="blue" value="blue">
-                                    <label lang="en" class="form-check-label" for="blue">Blue</label>
-                                    <label lang="zh" class="form-check-label" for="blue">藍色</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="color" id="red" value="red">
-                                    <label lang="en" class="form-check-label" for="red">Red</label>
-                                    <label lang="zh" class="form-check-label" for="red"">紅色</label>
-                                                </div>
+                        <div class="mt-4 d-flex justify-content-start">
+                            <div class="mt-4 d-flex justify-content-start">
+                                <label lang="en" for="pomodoro-length" class="w-25">Pomodoro time</label>
+                                <label lang="zh" for="pomodoro-length" class="w-25">蕃茄鐘時間</label>
+                                <input type="range" class="custom-range w-50" min="1" max="50" step="1" value="25"
+                                    name="pomodoro-length" id="pomodoro-length">
+                                <small id="pomodoro-display" class="ml-3"></small>
+                                <small lang="en">&nbsp;mins</small>
+                                <small lang="zh">&nbsp;分</small>
+                            </div>
 
-                                                
-<!-- 舊選單待刪 -->
-
-                        <!-- 主題顏色選單 -->
-                        <label lang=" en" for="theme">THEME</label>
-                                    <label lang="zh" for="theme">主題顏色</label>
-                                    <select class="custom-select" id="theme">
-                                        <!-- <option lang="en">Choose a theme</option>
-                            <option lang="zh">選擇主題顏色</option> -->
-
-                                        <option lang="en" value="green">Green</option>
-                                        <option lang="zh" value="green">綠色</option>
-
-                                        <option lang="en" value="blue">Blue</option>
-                                        <option lang="zh" value="blue">藍色</option>
-
-                                        <option lang="en" value="red">Red</option>
-                                        <option lang="zh" value="red">紅色</option>
-                                    </select>
-
-
-                                    <!-- 顯示語言選單 -->
-
-                                    <select class="custom-select mt-3" id="language">
-                                        <option lang="en" value="lang-prompt">Choose a display language</option>
-                                        <option lang="zh" value="lang-prompt">選擇顯示語言</option>
-
-                                        <option lang="en" value="en">English</option>
-                                        <option lang="zh" value="en">英文</option>
-
-                                        <option lang="en" value="zh">Traditional Chinese</option>
-                                        <option lang="zh" value="zh">繁體中文</option>
-                                    </select>
-
-                                    <!-- 提示音選單 -->
-
-                                    <select class="custom-select mt-3" id="audio">
-                                        <option lang="en" value="audio-prompt">Choose a sound alert</option>
-                                        <option lang="zh" value="audio-prompt">選擇提示音</option>
-
-                                        <option lang="en" value="bell">Bell</option>
-                                        <option lang="zh" value="bell">鐘聲</option>
-
-                                        <option lang="en" value="stream">Stream</option>
-                                        <option lang="zh" value="stream">溪流</option>
-
-                                        <option lang="en" value="none">None</option>
-                                        <option lang="zh" value="none">無</option>
-                                    </select>
-
-
-                                    </p>
-                                    <p class="mt-4">
-                                    <div class="d-flex justify-content-around">
-                                        <label for="pomodoro-time" class="w-25">
-                                            <span lang="en">Pomodoro time</span>
-                                            <span lang="zh">蕃茄鐘時間</span>
-                                        </label>
-                                        <input type="range" class="custom-range w-50" min="1" max="50" step="1"
-                                            value="25" name="pomodoro-length" id="pomodoro-length">
-
-                                        <small><small id="pomodoro-display" class="ml-3"></small>
-                                            <span lang="en">mins</span>
-                                            <span lang="zh">分</span>
-                                        </small>
-                                    </div>
-
-
-                                    <div class="d-flex justify-content-around">
-                                        <label for="break-time" class="w-25">
-                                            <span lang="en">Break time</span>
-                                            <span lang="zh">休息時間</span>
-                                        </label>
-                                        <input type="range" class="custom-range w-50" min="1" max="15" step="1"
-                                            value="5" name="break-length" id="break-length">
-
-                                        <small><small id="break-display" class="ml-3"></small>
-                                            <span lang="en">mins</span>
-                                            <span lang="zh">分</span>
-                                        </small>
-                                    </div>
-
-
-                                    </p>
+                            <div class="mt-4 d-flex justify-content-start">
+                                <label lang="en" for="break-length" class="w-25">Break time</label>
+                                <label lang="zh" for="break-length" class="w-25">休息時間</label>
+                                <input type="range" class="custom-range w-50" min="1" max="15" step="1" value="5"
+                                    name="break-length" id="break-length">
+                                <small id="break-display" class="ml-3"></small>
+                                <small lang="en">&nbsp;mins</small>
+                                <small lang="zh">&nbsp;分</small>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 

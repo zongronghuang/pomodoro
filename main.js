@@ -26,7 +26,7 @@ const pomodoro = {
     breakBtn: document.querySelector('#break'),
 
     // app settings
-    collapseSettings: document.querySelector('#collapseSettings'),
+    form: document.querySelector('#form'),
     theme: document.querySelector('#theme'),
     language: document.querySelector('#language'),
     audio: document.querySelector('#audio'),
@@ -192,14 +192,14 @@ const pomodoro = {
       this.revealLeaves()
     })
 
-    this.ui.collapseSettings.addEventListener('input', event => {
+    this.ui.form.addEventListener('input', event => {
 
 
-      console.log('theme', this.ui.theme.value)
-      console.log('language', this.ui.language.value)
-      console.log('audio', this.ui.audio.value)
-      console.log('pomodoro range', this.ui.pomodoroLength.value)
-      console.log('break range', this.ui.breakLength.value)
+      console.log('theme', this.ui.form.theme.value)
+      console.log('language', this.ui.form.language.value)
+      console.log('audio', this.ui.form.audio.value)
+      console.log('pomodoro range', this.ui.form["pomodoro-length"].value)
+      console.log('break range', this.ui.form["break-length"].value)
 
       // 顯示值
       this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
@@ -209,37 +209,22 @@ const pomodoro = {
       this.remainingSeconds = this.ui.pomodoroLength.value * 10
 
       // 更換語言
-      switch (this.ui.language.value) {
+      switch (this.ui.form.language.value) {
         case 'zh':
-          document.querySelectorAll('title[lang="en"], label[lang="en"], option[lang="en"], span[lang="en"]').forEach(element => {
+          document.querySelectorAll('[lang="en"]').forEach(element => {
             element.style.display = "none"
-
-            if (element.hasAttribute('selected')) element.removeAttribute('selected')
           })
-
-          document.querySelectorAll('title[lang="zh"], label[lang="zh"], option[lang="zh"], span[lang="zh"]').forEach(element => {
+          document.querySelectorAll('[lang="zh"]').forEach(element => {
             element.style.display = "inline"
-
-            if (element.value === this.ui.theme.value || element.value === this.ui.language.value || element.value === this.ui.audio.value) {
-              element.setAttribute('selected', '')
-            }
           })
-
           break
 
         case 'en':
-          document.querySelectorAll('title[lang="zh"], label[lang="zh"], option[lang="zh"], span[lang="zh"]').forEach(element => {
+          document.querySelectorAll('[lang="zh"]').forEach(element => {
             element.style.display = "none"
-
-            if (element.hasAttribute('selected')) element.removeAttribute('selected')
           })
-
-          document.querySelectorAll('title[lang="en"], label[lang="en"], option[lang="en"], span[lang="en"]').forEach(element => {
+          document.querySelectorAll('[lang="en"]').forEach(element => {
             element.style.display = "inline"
-
-            if (element.value === this.ui.theme.value || element.value === this.ui.language.value || element.value === this.ui.audio.value) {
-              element.setAttribute('selected', '')
-            }
           })
           break
 
@@ -249,7 +234,7 @@ const pomodoro = {
 
       // 更換 theme
       // 用 switch
-      switch (this.ui.theme.value) {
+      switch (this.ui.form.theme.value) {
         case 'blue':
           this.ui.coloringAreas.forEach(area => {
             area.classList.remove('green', 'red')
@@ -278,7 +263,7 @@ const pomodoro = {
 
       // change audio (with a demo upon change)
 
-      switch (this.audio.value) {
+      switch (this.ui.form.audio.value) {
         case 'bell':
           this.soundAlert = this.audio.bell
           break
@@ -294,8 +279,6 @@ const pomodoro = {
         default:
           break
       }
-
-      event.preventDefault()
     })
 
   }
