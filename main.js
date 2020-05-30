@@ -6,12 +6,14 @@ const pomodoro = {
   breakSeconds: 10,
   intervalID: null,
   soundAlert: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
+  volume: 0.1,
 
   ui: {
     // text display
     timeDisplay: document.querySelector('#time-display'),
     pomodoroDisplay: document.querySelector('#pomodoro-display'),
     breakDisplay: document.querySelector('#break-display'),
+    volumeDisplay: document.querySelector('#volume-display'),
     minutes: document.querySelector('#minutes'),
     seconds: document.querySelector('#seconds'),
     record: document.querySelector('#record'),
@@ -27,9 +29,7 @@ const pomodoro = {
 
     // app settings
     form: document.querySelector('#form'),
-    theme: document.querySelector('#theme'),
-    language: document.querySelector('#language'),
-    audio: document.querySelector('#audio'),
+    audioForm: document.querySelector('#audio-form'),
     pomodoroLength: document.querySelector('#pomodoro-length'),
     breakLength: document.querySelector('#break-length'),
 
@@ -42,8 +42,8 @@ const pomodoro = {
 
   audio: {
     bell: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
-    country: 'http://bbcsfx.acropolis.org.uk/assets/07060026.wav',
-    stream: 'http://bbcsfx.acropolis.org.uk/assets/07064019.wav'
+    splash: 'http://bbcsfx.acropolis.org.uk/assets/07064005.wav',
+    bird: 'http://bbcsfx.acropolis.org.uk/assets/07074107.wav'
   },
 
   initializeUI: function () {
@@ -54,10 +54,15 @@ const pomodoro = {
     this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
   },
 
+  playAudio: function () {
+    const audio = new Audio(this.soundAlert)
+    audio.volume = this.volume
+    audio.play()
+  },
+
   showDoneModal: function () {
-    // const audio = new Audio(this.soundAlert)
-    // audio.volume = 0.1
-    // audio.play()
+
+    this.playAudio()
 
     $('#done').modal('show')
 
@@ -75,11 +80,9 @@ const pomodoro = {
     })
 
     const breakCountDown = setInterval(() => {
-      // if (count === 4) {
-      //   const audio = new Audio(this.soundAlert)
-      //   audio.volume = 0.1
-      //   audio.play()
-      // }
+      if (count === 4) {
+        this.playAudio()
+      }
 
       if (count >= 5) {
         return clearInterval(breakCountDown)
@@ -138,6 +141,7 @@ const pomodoro = {
     this.ui.record.textContent = this.record
     this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
     this.ui.breakDisplay.textContent = this.ui.breakLength.value
+    this.ui.volumeDisplay.textContent = this.volume * 100
     this.ui.pauseBtn.setAttribute('hidden', '')
     this.ui.stopBtn.setAttribute('hidden', '')
     this.ui.breakBtn.setAttribute('hidden', '')
@@ -192,12 +196,11 @@ const pomodoro = {
       this.revealLeaves()
     })
 
+
+
     this.ui.form.addEventListener('input', event => {
-
-
       console.log('theme', this.ui.form.theme.value)
       console.log('language', this.ui.form.language.value)
-      console.log('audio', this.ui.form.audio.value)
       console.log('pomodoro range', this.ui.form["pomodoro-length"].value)
       console.log('break range', this.ui.form["break-length"].value)
 
@@ -259,17 +262,25 @@ const pomodoro = {
         default:
           break
       }
+    })
 
 
+    this.ui.audioForm.addEventListener('input', event => {
+      console.log('audio', this.ui.audioForm.audio.value)
+      console.log('volume', this.ui.audioForm.volume.value / 100)
       // change audio (with a demo upon change)
 
-      switch (this.ui.form.audio.value) {
+      switch (this.ui.audioForm.audio.value) {
         case 'bell':
           this.soundAlert = this.audio.bell
           break
 
-        case 'stream':
-          this.soundAlert = this.audio.stream
+        case 'splash':
+          this.soundAlert = this.audio.splash
+          break
+
+        case 'bird':
+          this.soundAlert = this.audio.bird
           break
 
         case 'none':
@@ -279,6 +290,11 @@ const pomodoro = {
         default:
           break
       }
+
+      this.volume = this.ui.audioForm.volume.value / 100
+      this.ui.volumeDisplay.textContent = this.ui.audioForm.volume.value
+
+      this.playAudio()
     })
 
   }
