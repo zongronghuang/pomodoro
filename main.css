@@ -33,10 +33,9 @@ a:hover {
 
 .square {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
-
 
 .fa-smile-wink {
     border-radius: 100%;
