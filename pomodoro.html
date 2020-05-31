@@ -83,7 +83,7 @@
                         <span lang="zh">設定</span>
                     </header>
 
-                    <form id="form">
+                    <form id="form" class="container">
                         <div class="mt-4 d-flex justify-content-start">
                             <span lang="en">Theme</span>
                             <span lang="zh">主題色</span>
@@ -155,43 +155,43 @@
                         </div>
                     </form>
 
-                    <form id="audio-form">
-                        <div class="mt-4 d-flex justify-content-start">
-                            <span lang="en">Sound alert</span>
-                            <span lang="zh">提示音</span>
-                            <div class="form-check form-check-inline">
+                    <hr>
+                    <form id="audio-form" class="container">
+                        <div class="row mt-4">
+                            <span lang="en" class="col-3 text-left">Sound alerts</span>
+                            <span lang="zh" class="col-3 text-left">提示音</span>
+                            <div class="form-check form-check-inline col">
                                 <input class="form-check-input" type="radio" name="audio" id="bell" value="bell"
                                     checked>
                                 <label lang="en" class="form-check-label" for="bell">Bell</label>
                                 <label lang="zh" class="form-check-label" for="bell">鐘聲</label>
                             </div>
 
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline col">
                                 <input class="form-check-input" type="radio" name="audio" id="splash" value="splash">
                                 <label lang="en" class="form-check-label" for="splash">Splash</label>
                                 <label lang="zh" class="form-check-label" for="splash"">水聲</label>
                             </div>
                                                     
-                            <div class=" form-check form-check-inline">
+                            <div class=" form-check form-check-inline col">
                                     <input class="form-check-input" type="radio" name="audio" id="bird" value="bird">
                                     <label lang="en" class="form-check-label" for="bird">Bird</label>
                                     <label lang="zh" class="form-check-label" for="bird">飛鳥</label>
                             </div>
 
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline col">
                                 <input class="form-check-input" type="radio" name="audio" id="none" value="none">
                                 <label lang="en" class="form-check-label" for="none">None</label>
                                 <label lang="zh" class="form-check-label" for="none">無</label>
                             </div>
                         </div>
 
-                        <div class="mt-4 d-flex justify-content-start">
-                            <label lang="en" for="volume" class="w-25">Volume</label>
-                            <label lang="zh" for="volume" class="w-25">音量</label>
-                            <input type="range" class="custom-range w-50" min="0" max="100" step="10" value="10"
+                        <div class="mt-4 row">
+                            <label lang="en" for="volume" class="col-3 text-left">Volume</label>
+                            <label lang="zh" for="volume" class="col-3 text-left">音量</label>
+                            <input type="range" class="custom-range col-7" min="0" max="100" step="10" value="10"
                                 name="volume" id="volume">
-                            <small id="volume-display" class="ml-3"></small>
-                            <small>%</small>
+                            <small id="volume-display" class="ml-2"></small><small>%</small>
                         </div>
                     </form>
                 </div>
