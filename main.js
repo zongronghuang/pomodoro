@@ -1,9 +1,9 @@
 const pomodoro = {
   status: 'READY',
   record: 0,
-  maxSeconds: 10,
-  remainingSeconds: 10,
-  breakSeconds: 10,
+  maxSeconds: 25 * 60,
+  remainingSeconds: 25 * 60,
+  breakSeconds: 5 * 60,
   intervalID: null,
   soundAlert: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
   volume: 0.1,
@@ -29,6 +29,8 @@ const pomodoro = {
 
     // app settings
     form: document.querySelector('#form'),
+    pomodoroForm: document.querySelector('#pomodoro-form'),
+    breakForm: document.querySelector('#break-form'),
     audioForm: document.querySelector('#audio-form'),
     pomodoroLength: document.querySelector('#pomodoro-length'),
     breakLength: document.querySelector('#break-length'),
@@ -80,9 +82,7 @@ const pomodoro = {
     })
 
     const breakCountDown = setInterval(() => {
-      if (count === 4) {
-        this.playAudio()
-      }
+      if (count === 4) this.playAudio()
 
       if (count >= 5) {
         return clearInterval(breakCountDown)
@@ -138,6 +138,8 @@ const pomodoro = {
   },
   runApp: function () {
     // Ready 狀態
+    this.ui.minutes.textContent = this.ui.pomodoroLength.value
+    this.ui.seconds.textContent = '00'
     this.ui.record.textContent = this.record
     this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
     this.ui.breakDisplay.textContent = this.ui.breakLength.value
@@ -196,47 +198,11 @@ const pomodoro = {
       this.revealLeaves()
     })
 
-
-
     this.ui.form.addEventListener('input', event => {
       console.log('theme', this.ui.form.theme.value)
       console.log('language', this.ui.form.language.value)
-      console.log('pomodoro range', this.ui.form["pomodoro-length"].value)
-      console.log('break range', this.ui.form["break-length"].value)
-
-      // 顯示值
-      this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
-      this.ui.breakDisplay.textContent = this.ui.breakLength.value
-      // 這邊的值之後要修改成 * 60
-      this.maxSeconds = this.ui.pomodoroLength.value * 10
-      this.remainingSeconds = this.ui.pomodoroLength.value * 10
-
-      // 更換語言
-      switch (this.ui.form.language.value) {
-        case 'zh':
-          document.querySelectorAll('[lang="en"]').forEach(element => {
-            element.style.display = "none"
-          })
-          document.querySelectorAll('[lang="zh"]').forEach(element => {
-            element.style.display = "inline"
-          })
-          break
-
-        case 'en':
-          document.querySelectorAll('[lang="zh"]').forEach(element => {
-            element.style.display = "none"
-          })
-          document.querySelectorAll('[lang="en"]').forEach(element => {
-            element.style.display = "inline"
-          })
-          break
-
-        default:
-          break
-      }
 
       // 更換 theme
-      // 用 switch
       switch (this.ui.form.theme.value) {
         case 'blue':
           this.ui.coloringAreas.forEach(area => {
@@ -262,10 +228,50 @@ const pomodoro = {
         default:
           break
       }
+
+      // 更換語言
+      switch (this.ui.form.language.value) {
+        case 'zh':
+          document.querySelectorAll('[lang="en"]').forEach(element => {
+            element.style.display = "none"
+          })
+          document.querySelectorAll('[lang="zh"]').forEach(element => {
+            element.style.display = "inline"
+          })
+          break
+
+        case 'en':
+          document.querySelectorAll('[lang="zh"]').forEach(element => {
+            element.style.display = "none"
+          })
+          document.querySelectorAll('[lang="en"]').forEach(element => {
+            element.style.display = "inline"
+          })
+          break
+
+        default:
+          break
+      }
     })
 
+    this.ui.pomodoroForm.addEventListener('input', event => {
+      console.log('pomodoro range', this.ui.pomodoroForm["pomodoro-length"].value)
 
-    this.ui.audioForm.addEventListener('input', event => {
+      // 顯示值
+      this.ui.pomodoroDisplay.textContent = this.ui.pomodoroLength.value
+      this.ui.minutes.textContent = this.ui.pomodoroLength.value
+      this.ui.seconds.textContent = '00'
+      // 這邊的值之後要修改成 * 60
+      this.maxSeconds = this.ui.pomodoroLength.value * 60
+      this.remainingSeconds = this.ui.pomodoroLength.value * 60
+    })
+
+    this.ui.breakForm.addEventListener('input', event => {
+      console.log('break range', this.ui.breakForm["break-length"].value)
+      this.ui.breakDisplay.textContent = this.ui.breakLength.value
+    })
+
+    this.ui.audioForm.addEventListener('change', event => {
       console.log('audio', this.ui.audioForm.audio.value)
       console.log('volume', this.ui.audioForm.volume.value / 100)
       // change audio (with a demo upon change)
