@@ -59,13 +59,13 @@
             </p>
             <div class="collapse text-monospace" id="collapseRecord">
                 <div class="card card-body">
-                    <span lang="en">Today's Success</span>
-                    <span lang="zh">今日成功紀錄</span>
-                    <div class="container mt-3">
+                    <div class="container mt-1">
                         <div class="row w-50 mx-auto">
-                            <time id="today" class="col-4  text-center"></time>
-                            <i class="fas fa-check-square col"></i>
-                            <span class="col" id="record"></span>
+                            <time id="today" class="col-12  text-center"></time>
+                        </div>
+                        <div class="row w-50 mx-auto mt-3">
+                            <i class="fas h3 fa-check-square col-6 text-right"></i>
+                            <span class="text-left h3 col-6" id="record"></span>
                         </div>
                     </div>
 
@@ -137,7 +137,7 @@
                     </form>
 
                     <form id="pomodoro-form" class="container">
-                        <div class="mt-4 row">
+                        <div class="row mt-4 ">
                             <label lang="en" for="pomodoro-length" class="col-3 text-left">Pomodoro</label>
                             <label lang="zh" for="pomodoro-length" class="col-3 text-left">蕃茄鐘</label>
                             <input type="range" class="custom-range col-7" min="1" max="50" step="1" value="25"
@@ -148,8 +148,8 @@
                         </div>
                     </form>
 
-                    <form id="break-form" class="container">
-                        <div class="mt-4 row">
+                    <form id="break-form" class="container mt-4 ">
+                        <div class="row">
                             <label lang="en" for="break-length" class="col-3 text-left">Break</label>
                             <label lang="zh" for="break-length" class="col-3 text-left">休息</label>
                             <input type="range" class="custom-range col-7" min="1" max="15" step="1" value="5"
