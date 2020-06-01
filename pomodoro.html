@@ -59,17 +59,17 @@
             </p>
             <div class="collapse text-monospace" id="collapseRecord">
                 <div class="card card-body">
-                    <header>
-                        <span lang="en">Today's Success</span>
-                        <span lang="zh">今日成功紀錄</span>
-                    </header>
-                    <time class="mt-4" id="today"></time>
-                    <p class="text-success">
-                        <span>
-                            <i class="fas fa-check-square h2"></i>
-                        </span>
-                        <span class="ml-3 h2" id="record"></span>
-                    </p>
+                    <span lang="en">Today's Success</span>
+                    <span lang="zh">今日成功紀錄</span>
+                    <div class="container mt-3">
+                        <div class="row w-50 mx-auto">
+                            <time id="today" class="col-4  text-center"></time>
+                            <i class="fas fa-check-square col"></i>
+                            <span class="col" id="record"></span>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
 
@@ -213,7 +213,7 @@
                 <div class="modal-header coloring-area">
                     <h5 class="modal-title" id="exampleModalLabel">
                         <span lang="en">Well Done</span>
-                        <span lang="zh">表現不錯</span>
+                        <span lang="zh">做得真好</span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -222,8 +222,8 @@
                 <div class="modal-body text-center">
                     <p><i class="far fa-smile-wink display-3 bg-warning"></i></p>
                     <p>
-                        <span lang="en">You have completed one more round!</span>
-                        <span lang="zh">你又完成了一個循環！</span>
+                        <span lang="en">You have completed one pomodoro!</span>
+                        <span lang="zh">你完成了一個蕃茄鐘！</span>
                     </p>
                 </div>
             </div>

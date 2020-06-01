@@ -1,14 +1,15 @@
+/* border settings for app, buttons, and fields */
 #app, #play, #break, #pause, #stop {
-  border: 2px solid black;
+    border: 2px solid black;
 }
-
 
 #app, #collapseSettings, #collapseRecord {
     border-radius: 5px;
 }
 
+/* Color settings */
 .coloring-area {
-     background-color: mediumaquamarine;
+    background-color: mediumaquamarine;
 }
 
 .green {
@@ -23,12 +24,14 @@
     background-color: darksalmon;
 }
 
-a:hover {
-    text-decoration: none;
-}
-
+/* Chinese strings hidden by default */
 [lang=zh] {
     display: none;
+}
+
+/* Decorations */
+a:hover {
+    text-decoration: none;
 }
 
 .square {
@@ -41,6 +44,7 @@ a:hover {
     border-radius: 100%;
 }
 
+/* Pause animation */
 @keyframes flash {
     from {color: black;}
     to  {color: lightgray;}
@@ -53,5 +57,3 @@ a:hover {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-
-

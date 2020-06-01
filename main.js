@@ -9,25 +9,26 @@ const pomodoro = {
   volume: 0.1,
 
   ui: {
-    // text display
+    // 文字顯示區域
     timeDisplay: document.querySelector('#time-display'),
     pomodoroDisplay: document.querySelector('#pomodoro-display'),
     breakDisplay: document.querySelector('#break-display'),
     volumeDisplay: document.querySelector('#volume-display'),
     minutes: document.querySelector('#minutes'),
     seconds: document.querySelector('#seconds'),
+    today: document.querySelector('#today'),
     record: document.querySelector('#record'),
 
-    // theme-applied areas
+    // 套用主題色區域
     coloringAreas: document.querySelectorAll('.coloring-area'),
 
-    // buttons
+    // 按鈕
     playBtn: document.querySelector('#play'),
     pauseBtn: document.querySelector('#pause'),
     stopBtn: document.querySelector('#stop'),
     breakBtn: document.querySelector('#break'),
 
-    // app settings
+    // 表單及時間長度輸入區域
     form: document.querySelector('#form'),
     pomodoroForm: document.querySelector('#pomodoro-form'),
     breakForm: document.querySelector('#break-form'),
@@ -35,17 +36,24 @@ const pomodoro = {
     pomodoroLength: document.querySelector('#pomodoro-length'),
     breakLength: document.querySelector('#break-length'),
 
-    // Modal
+    // 完成蕃茄鐘的對話框
     doneModal: document.querySelector('#competion'),
 
-    // leaves (break timer)
+    // 休息對話框的葉子計時器
     leaves: document.querySelectorAll('.break-count')
   },
 
+  // 提示音來源
   audio: {
     bell: 'http://bbcsfx.acropolis.org.uk/assets/07053071.wav',
     splash: 'http://bbcsfx.acropolis.org.uk/assets/07064005.wav',
     bird: 'http://bbcsfx.acropolis.org.uk/assets/07074107.wav'
+  },
+
+  playAudio: function () {
+    const audio = new Audio(this.soundAlert)
+    audio.volume = this.volume
+    audio.play()
   },
 
   initializeUI: function () {
@@ -56,14 +64,37 @@ const pomodoro = {
     this.ui.seconds.textContent = (seconds < 10) ? ('0' + seconds) : seconds
   },
 
-  playAudio: function () {
-    const audio = new Audio(this.soundAlert)
-    audio.volume = this.volume
-    audio.play()
+
+  // Visual effects for the pause state
+  addTextFade: function () {
+    this.ui.timeDisplay.classList.add('fade-in')
+  },
+
+  removeTextFade: function () {
+    this.ui.timeDisplay.classList.remove('fade-in')
+  },
+
+  // Actions and modals for the complete state
+  checkCompletion: function () {
+    // 剩餘秒數為 0 -> 重新調整 UI 和設定值
+    if (this.remainingSeconds === 0) {
+      this.status = 'READY'
+      clearInterval(this.intervalID)
+      this.intervalID = null
+      this.remainingSeconds = this.maxSeconds
+      this.record++
+      this.ui.record.textContent = this.record
+
+      this.ui.playBtn.removeAttribute('hidden')
+      this.ui.pauseBtn.setAttribute('hidden', '')
+      this.ui.stopBtn.setAttribute('hidden', '')
+      this.ui.breakBtn.removeAttribute('hidden')
+
+      this.showDoneModal()
+    }
   },
 
   showDoneModal: function () {
-
     this.playAudio()
 
     $('#done').modal('show')
@@ -93,32 +124,7 @@ const pomodoro = {
     }, (this.breakSeconds * 1000) / 5)
   },
 
-  addTextFade: function () {
-    this.ui.timeDisplay.classList.add('fade-in')
-  },
-
-  removeTextFade: function () {
-    this.ui.timeDisplay.classList.remove('fade-in')
-  },
-
-  checkCompletion: function () {
-    // 剩餘秒數為 0 -> 重新調整 UI 和設定值
-    if (this.remainingSeconds === 0) {
-      this.status = 'READY'
-      clearInterval(this.intervalID)
-      this.intervalID = null
-      this.remainingSeconds = this.maxSeconds
-      this.record++
-      this.ui.record.textContent = this.record
-
-      this.ui.playBtn.removeAttribute('hidden')
-      this.ui.pauseBtn.setAttribute('hidden', '')
-      this.ui.stopBtn.setAttribute('hidden', '')
-      this.ui.breakBtn.removeAttribute('hidden')
-
-      this.showDoneModal()
-    }
-  },
+  // Update time by second and check if a pomodoro is complete
   updateTime: function () {
     // 暫停 -> 啟動時，不會重新初始化 UI
     if (this.status !== 'PAUSED') this.initializeUI()
@@ -136,7 +142,11 @@ const pomodoro = {
       this.checkCompletion()
     }, 1000)
   },
+
   runApp: function () {
+    const today = new Date()
+    this.ui.today.textContent = today.toISOString().slice(0, 10)
+
     // Ready 狀態
     this.ui.minutes.textContent = this.ui.pomodoroLength.value
     this.ui.seconds.textContent = '00'
@@ -159,7 +169,6 @@ const pomodoro = {
 
       this.removeTextFade()
       this.updateTime()
-
     })
 
     // 按下 pause 按鍵
@@ -192,9 +201,7 @@ const pomodoro = {
     })
 
     this.ui.breakBtn.addEventListener('click', () => {
-      console.log('Break Time!')
       this.ui.breakBtn.setAttribute('hidden', '')
-
       this.revealLeaves()
     })
 
