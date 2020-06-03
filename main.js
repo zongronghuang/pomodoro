@@ -144,6 +144,7 @@ const pomodoro = {
   },
 
   runApp: function () {
+    document.documentElement.lang = ''
     const today = new Date()
     this.ui.today.textContent = today.toISOString().slice(0, 10)
 
